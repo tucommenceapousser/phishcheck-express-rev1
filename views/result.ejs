@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhishCheck — Résultat</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <img src="/public/logo.png" alt="trhacknon" class="logo" onerror="this.style.display='none'" />
+        <div>
+          <h1><span class="title-main">PhishCheck</span> <small style="color:var(--muted);font-weight:500">— Résultat</small></h1>
+          <div class="subtitle">Analyse réalisée par <strong style="color:var(--accent)">trhacknon</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <% if (error) { %>
+        <div class="alert"><strong>Error:</strong> <%= error %></div>
+      <% } else { %>
+        <div class="row">
+          <div class="col">
+            <h3>Résumé</h3>
+            <div class="kv"><strong>URL</strong><span><a href="<%= result.target %>" target="_blank" style="color:var(--accent-2)"><%= result.target %></a></span></div>
+            <div class="kv"><strong>Heuristiques</strong><span><%= (result.heuristics && result.heuristics.length) ? result.heuristics.join(', ') : 'Aucune alerte' %></span></div>
+            <% if (result.favicon) { %>
+              <div style="margin-top:12px">
+                <span class="badge">favicon</span>
+                <div class="kv"><strong>Found</strong><span><a href="<%= result.favicon.found_at %>" target="_blank" style="color:var(--accent-2)"><%= result.favicon.found_at %></a></span></div>
+                <div class="kv"><strong>Hash</strong><span><code><%= result.favicon.hash %></code> — <%= result.favicon.size %> bytes</span></div>
+              </div>
+            <% } %>
+          </div>
+
+          <div class="col">
+            <h3>Détails</h3>
+            <% if (result.shodan) { %>
+              <div class="card small"><strong>Shodan</strong><pre><%= JSON.stringify(result.shodan, null, 2) %></pre></div>
+            <% } %>
+            <% if (result.virustotal) { %>
+              <div style="margin-top:8px" class="card small"><strong>VirusTotal</strong><pre><%= JSON.stringify(result.virustotal, null, 2) %></pre></div>
+            <% } %>
+            <% if (result.gsb) { %>
+              <div style="margin-top:8px" class="card small"><strong>Google Safe Browsing</strong><pre><%= JSON.stringify(result.gsb, null, 2) %></pre></div>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+
+      <div style="margin-top:16px"><a href="/">↩ Nouvelle analyse</a></div>
+    </div>
+
+    <div class="footer">© <strong style="color:var(--accent)">trhacknon</strong> — usage éthique seulement</div>
+  </div>
+</body>
+</html>

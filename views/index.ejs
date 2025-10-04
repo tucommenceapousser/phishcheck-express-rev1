@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhishCheck Express — trhacknon</title>
+  <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <!-- Place your logo at public/logo.png -->
+        <img src="/public/logo.png" alt="trhacknon" class="logo" onerror="this.style.display='none'" />
+        <div>
+          <h1><span class="title-main">PhishCheck</span> <small style="color:var(--muted);font-weight:500">— Express</small></h1>
+          <div class="subtitle">By <span style="color:var(--accent);font-weight:800">trhacknon</span> · outil de vérification URL &amp; favicon hash</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <form method="post" action="/analyze">
+        <div class="controls">
+          <input name="url" placeholder="https://example.com (ou domain.tld)" autocomplete="off" />
+          <button type="submit">Analyser</button>
+        </div>
+      </form>
+      <p class="hint">Intégrations: Shodan, VirusTotal, Google Safe Browsing. Déploie sur Render / OnRender et ajoute tes clés en variables d'environnement.</p>
+    </div>
+
+    <div class="footer">Conçu pour tests de sécurité éthique — <span class="badge">trhacknon</span></div>
+  </div>
+</body>
+</html>
